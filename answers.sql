@@ -1,16 +1,5 @@
--- Step 1: Insert sample records
-
-INSERT INTO Student VALUES (102, 'Bala', 10);
-INSERT INTO Student VALUES (103, 'Kumar', 20);
-INSERT INTO Student VALUES (104, 'Priya', 10);
-
-COMMIT;
-
-
--- Step 2: Create the function
-
 CREATE OR REPLACE FUNCTION count_students (
-    p_department_id IN NUMBER
+    DepartmentID IN NUMBER
 )
 RETURN NUMBER
 IS
@@ -19,14 +8,11 @@ BEGIN
     SELECT COUNT(*)
     INTO v_count
     FROM Student
-    WHERE DepartmentID = p_department_id;
+    WHERE Student.DepartmentID = DepartmentID;
 
     RETURN v_count;
 END;
 /
-
-
--- Step 3: Execute the function
 
 SET SERVEROUTPUT ON;
 
